@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AppContext } from "../context/AppContext"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function Login(){
 
@@ -10,6 +13,9 @@ export default function Login(){
         email: "",
         password: "",
     })
+    const {backendURL, setIsloggedIn} = useContext(AppContext)
+
+    const navigate = useNavigate()
 
     let handleChange = (e)=>{
         setUserData((currData)=>{
@@ -17,8 +23,38 @@ export default function Login(){
         })
     }
 
-    let handleSubmit = (e)=>{
-        e.preventDefault()
+    let handleSubmit = async (e)=>{
+        try {
+            e.preventDefault()
+
+            axios.defaults.withCredentials = true
+
+            if(state === "Sign Up"){
+                const {data} = await axios.post(backendURL + "/api/auth/register", userData)
+
+                if(data.success){
+                    setIsloggedIn(true)
+                    navigate("/")
+                }
+                else(
+                    console.log(data.message)
+                )
+            }
+
+            else{
+                const {data} = await axios.post(backendURL + "/api/auth/login", userData);
+                if(data.success){
+                    setIsloggedIn(true);
+                    navigate("/")
+                }else{
+                    console.log(data.message)
+                }
+
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+        
         console.log(userData)
         setUserData({
         name: "",
@@ -28,8 +64,6 @@ export default function Login(){
     })
 
     }
-
-
 
 
 
