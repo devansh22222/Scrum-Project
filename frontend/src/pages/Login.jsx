@@ -13,7 +13,7 @@ export default function Login(){
         email: "",
         password: "",
     })
-    const {backendURL, setIsloggedIn} = useContext(AppContext)
+    const {backendURL, setIsLoggedIn} = useContext(AppContext)
 
     const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ export default function Login(){
                 const {data} = await axios.post(backendURL + "/api/auth/register", userData)
 
                 if(data.success){
-                    setIsloggedIn(true)
+                    setIsLoggedIn(true)
                     navigate("/")
                 }
                 else(
@@ -44,7 +44,7 @@ export default function Login(){
             else{
                 const {data} = await axios.post(backendURL + "/api/auth/login", userData);
                 if(data.success){
-                    setIsloggedIn(true);
+                    setIsLoggedIn(true);
                     navigate("/")
                 }else{
                     console.log(data.message)
