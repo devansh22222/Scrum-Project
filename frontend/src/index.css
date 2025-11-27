@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mainBox{
+    height: 500px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px black;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-left: 20px;
+    margin-top: 100px;
+
+}
+
+.homePage{
+    height: 100%;
+    width: 100%;
+    background-image: url("https://www.istockphoto.com/photos/voting-system");
+    background-size: cover;
+}
+.homeBg{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+.homeBg button{
+    height: 30px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.navBar{
+    height: 100px;
+    width: 100%;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.navBar button{
+    height: 40px;
+    width: 150px;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
