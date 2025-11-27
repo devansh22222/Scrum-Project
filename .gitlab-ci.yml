@@ -1,0 +1,45 @@
+stages:
+  - test
+  - build
+
+variables:
+  NODE_ENV: test
+
+  CACHE_DIR: node_modules
+
+cache:
+  paths:
+    - node_modules/
+
+
+test_project:
+  stage: test
+  image: node:18
+  script:
+    - echo "📦 Installing dependencies..."
+    - npm install
+    - echo "Running tests..."
+    - npm test
+  only:
+    - main
+    - master
+    - develop
+
+
+build_project:
+  stage: build
+  image: node:18
+  script:
+    - echo "📦 Installing dependencies..."
+    - npm install
+    - echo "Building project..."
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+      - build/
+    expire_in: 1 week
+  only:
+    - main
+    - master
+    - develop
